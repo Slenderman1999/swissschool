@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f172a">
+<title>Grundkurs 26A – Deutsch Lerntrainer</title>
+<style>
+:root{
+  --bg:#f4f4f8;
+  --surface:#ffffff;
+  --surface-2:#eef0f5;
+  --text:#0f172a;
+  --text-soft:#475569;
+  --border:#dfe3ec;
+  --blue:#2563eb;
+  --blue-soft:#dbeafe;
+  --green:#16a34a;
+  --green-soft:#dcfce7;
+  --red:#dc2626;
+  --red-soft:#fee2e2;
+  --yellow:#ca8a04;
+  --yellow-soft:#fef9c3;
+  --accent:#7c3aed;
+  --shadow:0 4px 14px rgba(15,23,42,0.06), 0 1px 3px rgba(15,23,42,0.04);
+  --shadow-lg:0 12px 36px rgba(15,23,42,0.12), 0 4px 12px rgba(15,23,42,0.06);
+  --radius:14px;
+  --radius-lg:22px;
+}
+[data-theme="dark"]{
+  --bg:#0b1220;
+  --surface:#131a2b;
+  --surface-2:#1c2438;
+  --text:#e6eaf2;
+  --text-soft:#9aa6bd;
+  --border:#27314a;
+  --blue:#60a5fa;
+  --blue-soft:#1e3a8a;
+  --green:#4ade80;
+  --green-soft:#14532d;
+  --red:#f87171;
+  --red-soft:#7f1d1d;
+  --yellow:#facc15;
+  --yellow-soft:#713f12;
+  --accent:#a78bfa;
+  --shadow:0 4px 14px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.3);
+  --shadow-lg:0 12px 36px rgba(0,0,0,0.5);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.45;font-size:17px;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;min-height:100dvh;overflow-x:hidden}
+#app{max-width:880px;margin:0 auto;padding:16px 16px 80px}
+header.appbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 6px 16px;position:sticky;top:0;background:linear-gradient(to bottom,var(--bg) 80%,transparent);z-index:10}
+.logo{font-weight:800;font-size:18px;letter-spacing:-0.02em;display:flex;align-items:center;gap:8px}
+.logo .dot{width:14px;height:14px;border-radius:5px;background:linear-gradient(135deg,var(--blue),var(--accent));box-shadow:0 0 0 3px var(--blue-soft)}
+.bar{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--surface-2);color:var(--text-soft);font-size:13px;font-weight:600}
+.icon-btn{width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:18px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .12s ease, background .15s ease}
+.icon-btn:hover{background:var(--surface-2)}
+.icon-btn:active{transform:scale(0.94)}
+h1{font-size:26px;margin:6px 0 4px;letter-spacing:-0.02em;font-weight:800}
+h2{font-size:20px;margin:18px 0 10px;font-weight:700;letter-spacing:-0.01em}
+h3{font-size:16px;margin:10px 0 6px;font-weight:700}
+p{margin:6px 0;color:var(--text-soft)}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow)}
+.card+.card{margin-top:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:14px;padding:14px 18px;font-size:16px;font-weight:700;cursor:pointer;background:var(--blue);color:white;min-height:48px;transition:transform .12s ease, filter .15s ease;width:100%}
+.btn:hover{filter:brightness(1.05)}
+.btn:active{transform:scale(0.97)}
+.btn.secondary{background:var(--surface-2);color:var(--text)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn.green{background:var(--green)}
+.btn.red{background:var(--red)}
+.btn.small{padding:10px 14px;font-size:14px;min-height:38px;width:auto}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn-row .btn{flex:1;min-width:140px}
+.modules-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:10px}
+@media (max-width:480px){.modules-grid{grid-template-columns:1fr}}
+.module-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:16px;cursor:pointer;display:flex;flex-direction:column;gap:10px;transition:transform .15s ease, box-shadow .15s ease;position:relative;overflow:hidden;min-height:160px}
+.module-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.module-card .top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.module-card .badge{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:white;flex-shrink:0}
+.module-card .title{font-weight:800;font-size:16px;line-height:1.25}
+.module-card .desc{font-size:13px;color:var(--text-soft)}
+.module-card .stars{font-size:18px;letter-spacing:2px;color:var(--yellow)}
+.module-card .level{position:absolute;top:14px;right:14px;font-size:11px;font-weight:800;padding:3px 7px;border-radius:999px;background:var(--surface-2);color:var(--text-soft)}
+.boss-card{background:linear-gradient(135deg,#7c3aed,#2563eb);color:white;border:none}
+.boss-card .title,.boss-card .desc{color:white}
+.boss-card .desc{opacity:0.9}
+.boss-card .badge{background:rgba(255,255,255,0.18)}
+.progress-track{height:10px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin:6px 0}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--accent));border-radius:999px;transition:width .35s ease}
+.exercise{padding:14px 6px}
+.exercise .question{font-size:18px;font-weight:700;line-height:1.4;margin-bottom:14px}
+.exercise .sentence{font-size:20px;line-height:1.7;background:var(--surface-2);padding:14px;border-radius:14px;margin:12px 0}
+.exercise .hint{display:none;background:var(--yellow-soft);color:var(--yellow);padding:10px 12px;border-radius:10px;font-size:14px;margin:10px 0;font-weight:600}
+.exercise .hint.show{display:block}
+.exercise .hint-btn{font-size:13px;color:var(--yellow);background:transparent;border:1px dashed var(--yellow);padding:6px 10px;border-radius:8px;font-weight:600;cursor:pointer;margin-bottom:8px}
+.options{display:grid;grid-template-columns:1fr;gap:10px;margin-top:8px}
+.option{background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:14px 16px;text-align:left;font-size:16px;font-weight:600;cursor:pointer;color:var(--text);transition:transform .12s ease, border-color .15s ease, background .15s ease;min-height:54px}
+.option:hover{border-color:var(--blue)}
+.option:active{transform:scale(0.98)}
+.option.selected{border-color:var(--blue);background:var(--blue-soft)}
+.option.correct{border-color:var(--green);background:var(--green-soft);color:var(--text)}
+.option.wrong{border-color:var(--red);background:var(--red-soft);color:var(--text)}
+.option:disabled{cursor:default}
+.word-zone{display:flex;flex-wrap:wrap;gap:8px;font-size:18px;line-height:1.7;padding:14px;background:var(--surface-2);border-radius:14px;margin:10px 0}
+.word{padding:6px 10px;border-radius:10px;background:var(--surface);border:2px solid var(--border);cursor:pointer;font-weight:600;transition:transform .1s ease, background .15s ease, border-color .15s ease;user-select:none}
+.word:hover{border-color:var(--blue)}
+.word:active{transform:scale(0.94)}
+.word.selected{background:var(--blue-soft);border-color:var(--blue)}
+.word.correct{background:var(--green-soft);border-color:var(--green)}
+.word.wrong{background:var(--red-soft);border-color:var(--red)}
+.word.locked{cursor:default}
+.word.punct{padding:6px 4px;background:transparent;border-color:transparent;cursor:default}
+.feedback{margin-top:14px;border-radius:14px;padding:14px;border-left:5px solid var(--blue);background:var(--surface-2)}
+.feedback.correct{border-left-color:var(--green);background:var(--green-soft)}
+.feedback.wrong{border-left-color:var(--red);background:var(--red-soft)}
+.feedback .head{font-weight:800;font-size:16px;margin-bottom:6px}
+.feedback .row{font-size:14px;color:var(--text);margin:4px 0}
+.feedback .row b{color:var(--blue);font-weight:800}
+.feedback .merksatz{margin-top:8px;padding:8px 12px;background:var(--yellow-soft);color:var(--yellow);border-radius:10px;font-weight:700;font-size:14px}
+.flex-between{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.muted{color:var(--text-soft);font-size:14px}
+.result-hero{text-align:center;padding:24px 10px}
+.result-hero .big{font-size:64px;font-weight:900;letter-spacing:-0.03em;background:linear-gradient(135deg,var(--blue),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;margin:8px 0}
+.result-hero .grade{font-size:42px;font-weight:900}
+.stars-large{font-size:36px;letter-spacing:6px;color:var(--yellow);text-align:center;margin:4px 0}
+.input{width:100%;padding:14px;border-radius:12px;border:2px solid var(--border);background:var(--surface);color:var(--text);font-size:16px;font-weight:600;outline:none}
+.input:focus{border-color:var(--blue)}
+.divider{height:1px;background:var(--border);margin:14px 0}
+.list{margin:6px 0;padding:0;list-style:none}
+.list li{padding:10px 12px;background:var(--surface-2);border-radius:10px;margin-bottom:6px;font-size:14px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.list li b{font-weight:700}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:var(--shadow-lg);opacity:0;transition:opacity .25s ease;z-index:50;pointer-events:none}
+.toast.show{opacity:1}
+.tag{display:inline-block;font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;background:var(--surface-2);color:var(--text-soft);text-transform:uppercase;letter-spacing:0.04em}
+.tag.blue{background:var(--blue-soft);color:var(--blue)}
+.tag.green{background:var(--green-soft);color:var(--green)}
+.tag.red{background:var(--red-soft);color:var(--red)}
+.tag.yellow{background:var(--yellow-soft);color:var(--yellow)}
+.points-anim{position:fixed;left:50%;top:30%;transform:translateX(-50%);font-size:48px;font-weight:900;color:var(--green);pointer-events:none;opacity:0;z-index:60}
+.points-anim.show{animation:pop 1s ease forwards}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,0) scale(0.6)}30%{opacity:1;transform:translate(-50%,-20px) scale(1.1)}100%{opacity:0;transform:translate(-50%,-60px) scale(1)}}
+.kbd{display:inline-block;padding:2px 6px;background:var(--surface-2);border:1px solid var(--border);border-radius:6px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+.center{text-align:center}
+.weak-list{margin-top:10px}
+.weak-list .item{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--surface-2);border-radius:10px;margin-bottom:6px}
+.weak-list .bar{flex:1;height:8px;background:var(--surface);border-radius:999px;margin:0 10px;overflow:hidden}
+.weak-list .bar > div{height:100%;background:var(--red)}
+.weak-list .bar.good > div{background:var(--green)}
+.footer-note{text-align:center;font-size:12px;color:var(--text-soft);padding:24px 8px 8px}
+.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media (max-width:480px){.mode-grid{grid-template-columns:1fr}}
+.mode-card{padding:18px;border:2px solid var(--border);border-radius:18px;cursor:pointer;background:var(--surface);transition:border-color .15s ease, transform .12s ease}
+.mode-card:hover{border-color:var(--blue)}
+.mode-card .h{font-weight:800;font-size:17px;margin-bottom:4px}
+.mode-card .d{font-size:13px;color:var(--text-soft)}
+@media (min-width:700px){
+  #app{padding:24px 24px 80px}
+  h1{font-size:32px}
+  .module-card{min-height:170px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="toast" class="toast"></div>
+<div id="points" class="points-anim">+10</div>
+
+<script>
+"use strict";
+
+/* =========================================================
+   GRUNDKURS 26A – DEUTSCH LERNTRAINER
+   Single-file static web app.
+   Hinweis fuer spaeteres echtes Online-Leaderboard:
+   Statt localStorage in saveLeaderboardEntry() einfach
+   fetch('https://DEIN-PROJEKT.supabase.co/...') aufrufen.
+   Tabelle: scores(id, name, score, total, percent, ts).
+   Mit anon-Key und Row-Level-Policy (INSERT only) absichern.
+   ========================================================= */
+
+/* ---------------- STATE & STORAGE ---------------- */
+const STORE_KEY = "gk26a_state_v1";
+const defaultState = {
+  nickname:"",
+  mode:"einzel",
+  theme:"light",
+  points:0,
+  progress:{},     // moduleId -> {best, completed, stars, attempts, wrong:[{idx,q,correct,picked}]}
+  bossHistory:[],  // [{score,total,percent,grade,date,weak:{moduleId:rate}}]
+  leaderboard:[]   // [{name,score,total,percent,date,grade}]
+};
+
+let state = loadState();
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(!raw) return structuredClone(defaultState);
+    const parsed = JSON.parse(raw);
+    return Object.assign(structuredClone(defaultState), parsed);
+  }catch(e){ return structuredClone(defaultState); }
+}
+function saveState(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){}
+}
+function resetAll(){
+  if(!confirm("Wirklich alle Fortschritte loeschen?")) return;
+  state = structuredClone(defaultState);
+  saveState();
+  applyTheme();
+  renderStart();
+}
+
+/* ---------------- THEME ---------------- */
+function applyTheme(){
+  document.documentElement.setAttribute("data-theme", state.theme === "dark" ? "dark" : "light");
+}
+function toggleTheme(){
+  state.theme = state.theme === "dark" ? "light" : "dark";
+  applyTheme();
+  saveState();
+}
+
+/* ---------------- HELPERS ---------------- */
+function $(html){ const d=document.createElement("div"); d.innerHTML=html.trim(); return d.firstChild; }
+function el(tag, attrs={}, ...children){
+  const e=document.createElement(tag);
+  for(const k in attrs){
+    if(k==="class") e.className=attrs[k];
+    else if(k==="html") e.innerHTML=attrs[k];
+    else if(k.startsWith("on")) e.addEventListener(k.substring(2), attrs[k]);
+    else e.setAttribute(k, attrs[k]);
+  }
+  for(const c of children){
+    if(c==null) continue;
+    if(typeof c === "string") e.appendChild(document.createTextNode(c));
+    else e.appendChild(c);
+  }
+  return e;
+}
+function clearApp(){ document.getElementById("app").innerHTML=""; }
+function mount(node){ document.getElementById("app").appendChild(node); }
+function toast(msg, ms=1600){
+  const t=document.getElementById("toast");
+  t.textContent=msg;
+  t.classList.add("show");
+  clearTimeout(t._t);
+  t._t = setTimeout(()=>t.classList.remove("show"), ms);
+}
+function pointsAnim(text){
+  const el=document.getElementById("points");
+  el.textContent=text;
+  el.classList.remove("show");
+  void el.offsetWidth;
+  el.classList.add("show");
+}
+function shuffle(arr){
+  const a=arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function gradeCH(percent){
+  let g = 1 + 5*percent/100;
+  g = Math.round(g*10)/10;
+  return g < 1 ? 1 : g > 6 ? 6 : g;
+}
+
+/* ---------------- EXERCISE BUILDER ---------------- */
+/*
+   Types:
+     mc        -> multiple choice  (correct = index of correct option)
+     click     -> click ONE word in sentence  (correct = index of word)
+     multiclick-> click MULTIPLE words        (correct = array of indices)
+     trans     -> multiple choice for transformation (Aktiv/Passiv)
+   Each exercise:
+     { type, q (question), s (sentence, optional), options, correct, e (explanation), r (rule), m (merksatz), tip (hint) }
+   For click/multiclick, "s" is tokenised by whitespace; punctuation is glued to the previous word visually.
+*/
+
+/* Helper: split a sentence into clickable tokens.
+   Punctuation (. , ! ?) becomes its own non-clickable token. */
+function tokenize(s){
+  const out=[];
+  s.split(/\s+/).forEach((w,i,arr)=>{
+    const m = w.match(/^(.*?)([.,!?;:]+)?$/);
+    const base = m[1];
+    const punct = m[2];
+    if(base) out.push({text:base, clickable:true});
+    if(punct) out.push({text:punct, clickable:false});
+  });
+  return out;
+}
+
+/* ---------------- EXERCISE DATA ---------------- */
+
+const MOD_WORTARTEN = {
+  id:"wortarten",
+  name:"Wortarten",
+  icon:"W",
+  color:"#2563eb",
+  desc:"Verb, Nomen, Adjektiv, Pronomen, Partikel",
+  exercises:[
+    {type:"click", q:"Klicke das VERB an.",
+     s:"Der Hund bellt im Garten laut.",
+     correct:1,
+     e:'"bellt" ist die Taetigkeit im Satz.',
+     r:"Verben druecken eine Taetigkeit oder einen Zustand aus.",
+     m:"VERB = was etwas tut oder ist."},
+    {type:"click", q:"Klicke das ADJEKTIV an.",
+     s:"Das alte Haus steht leer.",
+     correct:1,
+     e:'"alte" beschreibt das Nomen "Haus".',
+     r:"Adjektive beschreiben Nomen und koennen dekliniert werden.",
+     m:"ADJEKTIV = wie ist etwas?"},
+    {type:"mc", q:'Welche Wortart ist "und"?',
+     options:["Verb","Nomen","Pronomen","Partikel"],
+     correct:3,
+     e:'"und" verbindet und kann nicht gebeugt werden.',
+     r:"Partikeln sind unveraenderlich (Konjunktionen, Praepositionen, Adverbien, Interjektionen).",
+     m:"PARTIKEL = aendert sich nie."},
+    {type:"mc", q:'Welche Wortart ist "dieser" in "Dieser Schueler liest"?',
+     options:["Adjektiv","Pronomen","Nomen","Partikel"],
+     correct:1,
+     e:'"dieser" steht hier als Begleiter vor dem Nomen.',
+     r:"Pronomen koennen Stellvertreter ODER Begleiter eines Nomens sein.",
+     m:"PRONOMEN = ersetzt oder begleitet ein Nomen."},
+    {type:"click", q:"Klicke das NOMEN an.",
+     s:"Die Lehrerin erklaert geduldig.",
+     correct:1,
+     e:'"Lehrerin" wird grossgeschrieben und hat ein Genus.',
+     r:"Nomen haben Genus, Numerus, Kasus und werden grossgeschrieben.",
+     m:"NOMEN = Ding, Person, Idee."},
+    {type:"mc", q:'Welche Wortart ist "sehr"?',
+     options:["Adjektiv","Partikel","Pronomen","Verb"],
+     correct:1,
+     e:'"sehr" laesst sich nicht beugen ("ein sehres" geht nicht).',
+     r:"Wenn ein Wort nicht dekliniert oder konjugiert werden kann, ist es eine Partikel.",
+     m:"Test: nicht beugbar = Partikel."},
+    {type:"click", q:"Klicke das PRONOMEN an.",
+     s:"Sie liest dieses Buch sehr aufmerksam.",
+     correct:0,
+     e:'"Sie" ersetzt eine Person und steht stellvertretend.',
+     r:"Personalpronomen sind Stellvertreter eines Nomens.",
+     m:"PRONOMEN als Stellvertreter steht ALLEIN."},
+    {type:"multiclick", q:"Klicke ALLE Nomen an.",
+     s:"Der Lehrer gibt dem Schueler ein neues Buch.",
+     correct:[1,3,6],
+     e:'"Lehrer", "Schueler" und "Buch" sind alle Nomen.',
+     r:"Nomen werden im Deutschen immer grossgeschrieben.",
+     m:"Grossgeschrieben = oft Nomen."},
+    {type:"mc", q:'Welche Wortart ist "lesen"?',
+     options:["Verb","Nomen","Adjektiv","Partikel"],
+     correct:0,
+     e:'"lesen" ist die Grundform einer Taetigkeit.',
+     r:"Infinitive sind Verben in ihrer Grundform.",
+     m:"Endung -en oder -n = oft Verb."},
+    {type:"click", q:"Klicke die PARTIKEL an.",
+     s:"Er kam gestern nach Hause.",
+     correct:1,
+     e:'"gestern" ist ein Zeit-Adverb und nicht beugbar.',
+     r:"Adverbien gehoeren zu den Partikeln.",
+     m:"Adverbien sind Partikeln."}
+  ]
+};
+
+const MOD_PPA = {
+  id:"ppa",
+  name:"Pronomen, Partikeln, Adjektive",
+  icon:"P",
+  color:"#0ea5e9",
+  desc:"Funktion, Stellung, Art bestimmen",
+  exercises:[
+    {type:"mc", q:'"Er liest." - Welche Rolle hat das Pronomen "Er"?',
+     options:["Stellvertreter","Begleiter","Adjektiv","Partikel"],
+     correct:0,
+     e:'"Er" steht alleine fuer eine Person.',
+     r:"Pronomen ohne Nomen daneben = Stellvertreter.",
+     m:"Alleine = Stellvertreter."},
+    {type:"mc", q:'"Dieser Schueler liest." - Welche Rolle hat "Dieser"?',
+     options:["Stellvertreter","Begleiter","Adverb","Konjunktion"],
+     correct:1,
+     e:'"Dieser" steht vor dem Nomen "Schueler".',
+     r:"Pronomen mit Nomen dahinter = Begleiter.",
+     m:"Mit Nomen = Begleiter."},
+    {type:"mc", q:'Welche Art Pronomen ist "mein" in "mein Buch"?',
+     options:["Personalpronomen","Possessivpronomen","Reflexivpronomen","Relativpronomen"],
+     correct:1,
+     e:'"mein" zeigt Besitz an.',
+     r:"Possessivpronomen druecken Zugehoerigkeit aus.",
+     m:"Besitz = Possessiv."},
+    {type:"mc", q:'Welche Art Pronomen ist "der" in "Der Mann, der lacht"?',
+     options:["Personalpronomen","Possessivpronomen","Relativpronomen","Demonstrativpronomen"],
+     correct:2,
+     e:'"der" leitet einen Relativsatz ein und bezieht sich auf "Mann".',
+     r:"Relativpronomen leiten Relativsaetze ein und beziehen sich auf ein Nomen davor.",
+     m:"Im Relativsatz = Relativpronomen."},
+    {type:"mc", q:'Stellung des Adjektivs in "Das schnelle Auto faehrt"?',
+     options:["attributiv (vor Nomen)","praedikativ (nach Verb)","nominalisiert","adverbial"],
+     correct:0,
+     e:'"schnelle" steht vor dem Nomen und wird dekliniert.',
+     r:"Attributive Adjektive stehen vor dem Nomen und werden gebeugt.",
+     m:"Vor Nomen = attributiv."},
+    {type:"mc", q:'Stellung des Adjektivs in "Das Auto ist schnell"?',
+     options:["attributiv","praedikativ","nominalisiert","adverbial"],
+     correct:1,
+     e:'"schnell" steht nach "ist" und wird nicht gebeugt.',
+     r:"Praedikative Adjektive stehen nach Verben wie sein/werden/bleiben.",
+     m:"Nach sein/werden = praedikativ."},
+    {type:"mc", q:'Stellung in "Das Schoene ueberwiegt"?',
+     options:["attributiv","praedikativ","nominalisiert","adverbial"],
+     correct:2,
+     e:'"das Schoene" ist hier ein Nomen geworden.',
+     r:"Nominalisierte Adjektive werden grossgeschrieben und haben einen Artikel.",
+     m:"Mit Artikel + gross = nominalisiert."},
+    {type:"mc", q:'Funktion der Partikel "aber" in "Ich komme, aber spaeter"?',
+     options:["Konjunktion","Praeposition","Adverb","Interjektion"],
+     correct:0,
+     e:'"aber" verbindet zwei Aussagen.',
+     r:"Konjunktionen verbinden Saetze oder Satzteile.",
+     m:"Verbindet = Konjunktion."},
+    {type:"mc", q:'Funktion der Partikel "auf" in "Auf dem Tisch"?',
+     options:["Konjunktion","Praeposition","Adverb","Interjektion"],
+     correct:1,
+     e:'"auf" verlangt einen Kasus und steht vor einem Nomen.',
+     r:"Praepositionen verlangen einen Kasus.",
+     m:"Vor Nomen mit Kasus = Praeposition."},
+    {type:"mc", q:'Funktion der Partikel "dort" in "Dort steht das Haus"?',
+     options:["Konjunktion","Praeposition","Adverb","Interjektion"],
+     correct:2,
+     e:'"dort" gibt einen Ort an und ist nicht beugbar.',
+     r:"Adverbien geben Ort, Zeit, Art oder Grund an.",
+     m:"Wo, wann, wie = Adverb."}
+  ]
+};
+
+const MOD_FINIT = {
+  id:"finit",
+  name:"Finite Verben",
+  icon:"F",
+  color:"#16a34a",
+  desc:"Finit vs. infinit erkennen",
+  exercises:[
+    {type:"click", q:"Klicke das FINITE Verb an.",
+     s:"Der Schueler liest das Buch.",
+     correct:2,
+     e:'"liest" ist an Person (3. Sg.) und Zeit (Praesens) angepasst.',
+     r:"Finite Verben sind nach Person, Zahl, Zeit oder Modus konjugiert.",
+     m:"FINIT = traegt die Grammatik."},
+    {type:"click", q:"Klicke das FINITE Verb an.",
+     s:"Sie hat den Brief geschrieben.",
+     correct:1,
+     e:'"hat" ist konjugiert (3. Sg. Praesens). "geschrieben" ist ein Partizip (infinit).',
+     r:"Im Perfekt ist das Hilfsverb finit, das Partizip infinit.",
+     m:"Hilfsverb = finit."},
+    {type:"click", q:"Klicke das FINITE Verb an.",
+     s:"Er moechte heute schwimmen gehen.",
+     correct:1,
+     e:'"moechte" ist konjugiert. "schwimmen" und "gehen" sind Infinitive.',
+     r:"Modalverben werden konjugiert; das Vollverb bleibt Infinitiv.",
+     m:"Modalverb = finit."},
+    {type:"mc", q:'Ist "gelesen" in "Ich habe gelesen" finit oder infinit?',
+     options:["finit","infinit (Partizip)","Infinitiv","Imperativ"],
+     correct:1,
+     e:'"gelesen" zeigt keine Person/Zeit an, "habe" tut das.',
+     r:"Partizip II ist immer infinit.",
+     m:"Ge-Form = infinit."},
+    {type:"mc", q:'Ist "schwimmen" in "Wir wollen schwimmen" finit oder infinit?',
+     options:["finit","infinit (Infinitiv)","Partizip","Imperativ"],
+     correct:1,
+     e:'"schwimmen" steht in der Grundform.',
+     r:"Der Infinitiv ist nicht konjugiert und ist infinit.",
+     m:"Grundform = infinit."},
+    {type:"click", q:"Klicke das FINITE Verb an.",
+     s:"Wenn es regnet, bleiben wir zu Hause.",
+     correct:6,
+     e:'"bleiben" ist das finite Verb des Hauptsatzes (1. Pl. Praesens). "regnet" ist auch finit, aber im Nebensatz.',
+     r:"Jeder Hauptsatz enthaelt mindestens ein finites Verb.",
+     m:"Im Hauptsatz steht das finite Verb an Position 2."},
+    {type:"multiclick", q:"Klicke ALLE finiten Verben an (Haupt- UND Nebensatz).",
+     s:"Er weiss, dass sie kommt.",
+     correct:[1,4],
+     e:'"weiss" ist finit im Hauptsatz, "kommt" finit im Nebensatz.',
+     r:"Jeder Satz (auch Nebensatz) hat ein eigenes finites Verb.",
+     m:"Pro Satz: ein finites Verb."},
+    {type:"mc", q:'Welche Form ist KEIN finites Verb?',
+     options:["liest","gelesen","las","lese"],
+     correct:1,
+     e:'"gelesen" ist Partizip II, also infinit.',
+     r:"Partizipien sind nie finit.",
+     m:"ge-...-(e)t/-en = Partizip = infinit."},
+    {type:"click", q:"Klicke das FINITE Verb an.",
+     s:"Gestern las er ein spannendes Buch.",
+     correct:1,
+     e:'"las" ist Praeteritum, 3. Sg. - finit.',
+     r:"Praeteritumformen sind finit, wenn sie zur Person passen.",
+     m:"Praeteritum + Person = finit."},
+    {type:"mc", q:'Warum ist "ist" in "Er ist mein Freund" finit?',
+     options:["weil es klein geschrieben wird","weil es zur Person 'er' passt","weil es ein Hilfsverb ist","weil es kurz ist"],
+     correct:1,
+     e:'"ist" ist 3. Sg. Praesens, also an Person und Zeit angepasst.',
+     r:"Finit = an Person, Zahl, Zeit oder Modus angepasst.",
+     m:"Passt zur Person = finit."}
+  ]
+};
+
+const MOD_AP = {
+  id:"ap",
+  name:"Aktiv / Passiv",
+  icon:"A",
+  color:"#ea580c",
+  desc:"Umwandeln, Taeter erkennen",
+  exercises:[
+    {type:"trans", q:'Aktiv -> Passiv: "Der Schueler liest den Text."',
+     options:[
+       "Der Text wird vom Schueler gelesen.",
+       "Der Schueler wird vom Text gelesen.",
+       "Der Text liest den Schueler.",
+       "Der Text hat den Schueler gelesen."
+     ], correct:0,
+     e:'Objekt "den Text" wird Subjekt; werden + Partizip II; Taeter mit "von".',
+     r:"Passiv-Schritte: 1) Objekt suchen 2) Objekt wird Subjekt 3) werden + Partizip II 4) Taeter mit 'von'.",
+     m:"OBJ wird SUBJ, werden + PII, von + Taeter."},
+    {type:"trans", q:'Passiv -> Aktiv: "Der Brief wird vom Lehrer geschrieben."',
+     options:[
+       "Der Lehrer schreibt den Brief.",
+       "Der Brief schreibt den Lehrer.",
+       "Der Lehrer wird den Brief schreiben.",
+       "Der Brief wurde geschrieben."
+     ], correct:0,
+     e:'"vom Lehrer" wird Subjekt; werden faellt weg; Partizip wird Vollverb.',
+     r:"Aktiv: Taeter steht im Nominativ und handelt aktiv.",
+     m:"Taeter raus aus 'von' = Subjekt."},
+    {type:"trans", q:'Aktiv -> Passiv: "Die Katze faengt die Maus."',
+     options:[
+       "Die Maus wird von der Katze gefangen.",
+       "Die Katze wird von der Maus gefangen.",
+       "Die Maus faengt die Katze.",
+       "Die Maus hat die Katze gefangen."
+     ], correct:0,
+     e:"Akkusativobjekt wird Subjekt; faengt -> wird gefangen.",
+     r:"Nur transitive Verben (mit Akk.-Objekt) lassen sich ins Passiv setzen.",
+     m:"Akkusativobjekt -> Nominativsubjekt."},
+    {type:"mc", q:'Wer ist der Taeter in "Der Kuchen wird von Mama gebacken"?',
+     options:["Der Kuchen","Mama","gebacken","wird"],
+     correct:1,
+     e:'Im Passiv steht der Taeter in der "von"-Phrase.',
+     r:"Taeter im Passiv: meist 'von + Dativ'.",
+     m:"'von' zeigt den Taeter."},
+    {type:"trans", q:'Aktiv -> Passiv: "Wir loesen die Aufgabe."',
+     options:[
+       "Die Aufgabe wird (von uns) geloest.",
+       "Wir werden die Aufgabe geloest.",
+       "Die Aufgabe loest uns.",
+       "Wir loesen werden die Aufgabe."
+     ], correct:0,
+     e:"Die Aufgabe wird Subjekt; werden + Partizip II.",
+     r:"Der Taeter kann im Passiv weggelassen werden.",
+     m:"Taeter ist im Passiv optional."},
+    {type:"mc", q:'Welcher Satz ist im PASSIV?',
+     options:[
+       "Der Vater kocht das Essen.",
+       "Das Essen wird gekocht.",
+       "Sie kocht jeden Tag.",
+       "Wir haben gekocht."
+     ], correct:1,
+     e:'"wird gekocht" ist werden + Partizip II.',
+     r:"Passiv-Form: werden + Partizip II.",
+     m:"werden + ge-...t/-en = Passiv."},
+    {type:"trans", q:'Passiv -> Aktiv: "Das Auto wurde repariert."',
+     options:[
+       "Jemand reparierte das Auto.",
+       "Das Auto reparierte sich.",
+       "Das Auto wird reparieren.",
+       "Reparieren wurde das Auto."
+     ], correct:0,
+     e:"Wenn kein Taeter genannt ist, setzt man oft 'jemand/man' ein.",
+     r:"Passiv ohne Taeter -> im Aktiv mit 'man' oder 'jemand'.",
+     m:"Kein Taeter? Man/jemand einsetzen."},
+    {type:"mc", q:'Welche Schritt-Reihenfolge stimmt fuer Aktiv -> Passiv?',
+     options:[
+       "1 Subjekt streichen, 2 Verb tauschen",
+       "1 Objekt suchen, 2 Objekt wird Subjekt, 3 werden + Partizip II, 4 Taeter mit von",
+       "1 Verb tauschen, 2 Objekt streichen",
+       "1 Taeter streichen, 2 Verb anpassen"
+     ], correct:1,
+     e:"So funktioniert die Umwandlung Schritt fuer Schritt.",
+     r:"4-Schritt-Regel ist die Standardmethode.",
+     m:"OBJ->SUBJ, werden+PII, von+Taeter."},
+    {type:"trans", q:'Aktiv -> Passiv (Perfekt): "Sie hat den Brief geschrieben."',
+     options:[
+       "Der Brief ist von ihr geschrieben worden.",
+       "Der Brief wird geschrieben.",
+       "Sie wird den Brief geschrieben.",
+       "Der Brief hat geschrieben worden."
+     ], correct:0,
+     e:"Perfekt Passiv: sein + Partizip II + worden.",
+     r:"Perfekt Passiv = ist/sind + PII + worden.",
+     m:"Im Perfekt: 'worden' statt 'geworden'."},
+    {type:"mc", q:'Welcher Satz ist AKTIV?',
+     options:[
+       "Das Lied wird gesungen.",
+       "Sie singt ein Lied.",
+       "Das Lied wurde gesungen.",
+       "Es wird viel gesungen."
+     ], correct:1,
+     e:'Subjekt "sie" handelt aktiv.',
+     r:"Aktiv: Subjekt ist der Taeter, kein 'werden + PII'.",
+     m:"Subjekt handelt = Aktiv."}
+  ]
+};
+
+const MOD_FLEX = {
+  id:"flex",
+  name:"Flexionsmerkmale",
+  icon:"X",
+  color:"#9333ea",
+  desc:"Person, Tempus, Kasus, Genus...",
+  exercises:[
+    {type:"mc", q:'"liest" - welche Person & Numerus?',
+     options:["1. Sg.","2. Sg.","3. Sg.","3. Pl."],
+     correct:2,
+     e:'"er/sie/es liest" - 3. Person Singular.',
+     r:"Person + Numerus = Konjugationsmerkmale beim Verb.",
+     m:"3. Sg. -t -> -t Endung."},
+    {type:"mc", q:'"ging" - welches Tempus?',
+     options:["Praesens","Praeteritum","Perfekt","Plusquamperfekt"],
+     correct:1,
+     e:'"ging" ist die einfache Vergangenheit.',
+     r:"Praeteritum = einfache Vergangenheit (eine Form).",
+     m:"Praeteritum = eine Form."},
+    {type:"mc", q:'"hat gelesen" - welches Tempus?',
+     options:["Praesens","Praeteritum","Perfekt","Futur I"],
+     correct:2,
+     e:'Hilfsverb haben + Partizip II = Perfekt.',
+     r:"Perfekt = haben/sein (Praesens) + Partizip II.",
+     m:"haben/sein + PII = Perfekt."},
+    {type:"mc", q:'Modus in "Geh nach Hause!"?',
+     options:["Indikativ","Konjunktiv","Imperativ","Infinitiv"],
+     correct:2,
+     e:'Befehl/Aufforderung = Imperativ.',
+     r:"Imperativ = Befehlsform.",
+     m:"Befehl = Imperativ."},
+    {type:"mc", q:'Modus in "Er saege, dass..." (indirekte Rede)?',
+     options:["Indikativ","Konjunktiv I","Konjunktiv II","Imperativ"],
+     correct:1,
+     e:'Indirekte Rede verlangt Konjunktiv I.',
+     r:"Konjunktiv I = indirekte Rede.",
+     m:"Indirekte Rede = Konj. I."},
+    {type:"mc", q:'Genus verbi in "Der Kuchen wird gebacken"?',
+     options:["Aktiv","Passiv","Reflexiv","Imperativ"],
+     correct:1,
+     e:'werden + Partizip II = Passiv.',
+     r:"Genus verbi = Aktiv oder Passiv.",
+     m:"werden + PII = Passiv."},
+    {type:"mc", q:'Welcher Kasus: "Ich gebe dem Hund Futter"?',
+     options:["Nominativ","Genitiv","Dativ","Akkusativ"],
+     correct:2,
+     e:'"dem Hund" antwortet auf "wem?" -> Dativ.',
+     r:"Dativ = Wem-Fall.",
+     m:"WEM? = Dativ."},
+    {type:"mc", q:'Welcher Kasus: "wegen des Regens"?',
+     options:["Nominativ","Genitiv","Dativ","Akkusativ"],
+     correct:1,
+     e:'"wegen" verlangt Genitiv.',
+     r:"Praepositionen wie wegen/trotz/waehrend verlangen Genitiv.",
+     m:"wegen/trotz/waehrend -> Genitiv."},
+    {type:"mc", q:'Numerus von "Buecher"?',
+     options:["Singular","Plural"],
+     correct:1,
+     e:'Mehr als eins -> Plural.',
+     r:"Numerus = Zahl (Singular oder Plural).",
+     m:"Mehrere = Plural."},
+    {type:"mc", q:'Genus von "Maedchen"?',
+     options:["maskulin","feminin","neutrum"],
+     correct:2,
+     e:'"das Maedchen" - neutrum, obwohl die Person weiblich ist.',
+     r:"Genus folgt grammatischem, nicht biologischem Geschlecht.",
+     m:"Artikel zeigt Genus: das = neutrum."}
+  ]
+};
+
+const MOD_SG = {
+  id:"sg",
+  name:"Satzglieder",
+  icon:"S",
+  color:"#0891b2",
+  desc:"Subjekt, Objekte, Adverbiale",
+  exercises:[
+    {type:"mc", q:'"Der Lehrer korrigiert die Arbeiten." - Was ist "Der Lehrer"?',
+     options:["Subjekt","Akkusativobjekt","Dativobjekt","Adverbiale"],
+     correct:0,
+     e:'Frage: Wer korrigiert? -> Der Lehrer.',
+     r:"Subjekt = Antwort auf 'Wer oder was?'",
+     m:"WER/WAS? = Subjekt."},
+    {type:"mc", q:'"Der Lehrer korrigiert die Arbeiten." - Was ist "die Arbeiten"?',
+     options:["Subjekt","Akkusativobjekt","Dativobjekt","Adverbiale"],
+     correct:1,
+     e:'Frage: Wen oder was? -> die Arbeiten.',
+     r:"Akkusativobjekt = Wen-Fall.",
+     m:"WEN/WAS? = Akk.-Obj."},
+    {type:"mc", q:'"Sie hilft ihrem Bruder." - Was ist "ihrem Bruder"?',
+     options:["Subjekt","Akkusativobjekt","Dativobjekt","Genitivobjekt"],
+     correct:2,
+     e:'Frage: Wem hilft sie? -> ihrem Bruder.',
+     r:"Dativobjekt = Wem-Fall.",
+     m:"WEM? = Dat.-Obj."},
+    {type:"mc", q:'"Wir gedenken der Opfer." - Was ist "der Opfer"?',
+     options:["Subjekt","Akkusativobjekt","Dativobjekt","Genitivobjekt"],
+     correct:3,
+     e:'Frage: Wessen gedenken wir? -> der Opfer.',
+     r:"Genitivobjekt = Wessen-Fall.",
+     m:"WESSEN? = Gen.-Obj."},
+    {type:"mc", q:'"Er wartet auf den Bus." - Was ist "auf den Bus"?',
+     options:["Praepositionalobjekt","Adverbiale","Akkusativobjekt","Subjekt"],
+     correct:0,
+     e:'Verb "warten" verlangt feste Praeposition "auf".',
+     r:"Praepositionalobjekt = vom Verb fest geforderte Praepositionalphrase.",
+     m:"Festes Verb + Praeposition = Praep.-Obj."},
+    {type:"mc", q:'"Morgen kommt sie nach Hause." - Was ist "Morgen"?',
+     options:["Subjekt","Akkusativobjekt","Adverbiale (Zeit)","Praepositionalobjekt"],
+     correct:2,
+     e:'Frage: Wann kommt sie? -> Morgen.',
+     r:"Adverbiale geben Zeit, Ort, Art oder Grund an.",
+     m:"WANN/WO/WIE/WARUM? = Adverbiale."},
+    {type:"click", q:"Klicke das SUBJEKT an.",
+     s:"Heute schreibt die Lehrerin eine Pruefung.",
+     correct:2,
+     e:'Wer schreibt? -> die Lehrerin (Wortgruppe; klicke den Kern).',
+     r:"Subjekt steht im Nominativ.",
+     m:"Subjekt = Nominativ."},
+    {type:"mc", q:'"Im Garten spielen die Kinder froehlich." - Was ist "froehlich"?',
+     options:["Adjektivobjekt","Adverbiale (Art)","Subjekt","Praepositionalobjekt"],
+     correct:1,
+     e:'Frage: Wie spielen sie? -> froehlich.',
+     r:"Adverbiale der Art antworten auf 'Wie?'",
+     m:"WIE? = Modaladverbiale."},
+    {type:"mc", q:'"Sie schenkt dem Kind ein Buch." - Was ist "ein Buch"?',
+     options:["Subjekt","Akkusativobjekt","Dativobjekt","Adverbiale"],
+     correct:1,
+     e:'Frage: Wen oder was schenkt sie? -> ein Buch.',
+     r:"Akkusativobjekt steht im Wen-Fall.",
+     m:"WEN/WAS? = Akk.-Obj."},
+    {type:"mc", q:'"Wegen des Sturms blieb er zu Hause." - Was ist "Wegen des Sturms"?',
+     options:["Subjekt","Adverbiale (Grund)","Genitivobjekt","Akkusativobjekt"],
+     correct:1,
+     e:'Frage: Warum blieb er? -> wegen des Sturms.',
+     r:"Adverbiale des Grundes antworten auf 'Warum?'",
+     m:"WARUM? = Kausaladverbiale."}
+  ]
+};
+
+const MOD_NS = {
+  id:"ns",
+  name:"Nebensaetze",
+  icon:"N",
+  color:"#be185d",
+  desc:"Relativ, Konjunktional, Infinitiv...",
+  exercises:[
+    {type:"mc", q:'"Der Mann, der lacht, ist mein Onkel." - Welcher Nebensatz?',
+     options:["Relativsatz","Konjunktionalsatz","Infinitivsatz","Partizipialsatz"],
+     correct:0,
+     e:'"der lacht" wird durch Relativpronomen "der" eingeleitet.',
+     r:"Relativsatz: eingeleitet mit der/die/das/welcher; bezieht sich auf Nomen.",
+     m:"der/die/das + Nebensatz = Relativsatz."},
+    {type:"mc", q:'"Ich bleibe, weil es regnet." - Welcher Nebensatz?',
+     options:["Relativsatz","Konjunktionalsatz","Infinitivsatz","Uneingeleiteter NS"],
+     correct:1,
+     e:'"weil" ist eine unterordnende Konjunktion.',
+     r:"Konjunktionalsatz: mit weil, dass, obwohl, wenn, als...",
+     m:"weil/dass/obwohl = Konjunktionalsatz."},
+    {type:"mc", q:'"Er hofft, bald nach Hause zu kommen." - Welcher Nebensatz?',
+     options:["Relativsatz","Konjunktionalsatz","Infinitivsatz","Partizipialsatz"],
+     correct:2,
+     e:'"zu kommen" = zu + Infinitiv.',
+     r:"Infinitivsatz: enthaelt 'zu' + Infinitiv.",
+     m:"zu + Infinitiv = Infinitivsatz."},
+    {type:"mc", q:'"Vom Regen ueberrascht, suchten wir Schutz." - Welcher Nebensatz?',
+     options:["Relativsatz","Konjunktionalsatz","Infinitivsatz","Partizipialsatz"],
+     correct:3,
+     e:'"ueberrascht" ist Partizip II als Kern.',
+     r:"Partizipialsatz: Kern ist Partizip I oder II.",
+     m:"Partizip als Kern = Partizipialsatz."},
+    {type:"mc", q:'"Kommt sie morgen, gehen wir ins Kino." - Welcher Nebensatz?',
+     options:["Relativsatz","Konjunktionalsatz","Uneingeleiteter NS","Partizipialsatz"],
+     correct:2,
+     e:'Kein Einleitewort; Verb steht zuerst.',
+     r:"Uneingeleiteter NS: kein Einleitewort, Verb an Position 1.",
+     m:"Verb vorn, kein Einleiter = uneingeleitet."},
+    {type:"click", q:"Klicke das EINLEITEWORT des Nebensatzes an.",
+     s:"Ich weiss, dass du kommst.",
+     correct:3,
+     e:'"dass" leitet den Konjunktionalsatz ein.',
+     r:"Konjunktion am Anfang eines NS = Einleitewort.",
+     m:"Erstes Wort im NS = oft Einleiter."},
+    {type:"mc", q:'"Das Buch, welches ich lese..." - Welcher Nebensatz?',
+     options:["Relativsatz","Konjunktionalsatz","Infinitivsatz","Uneingeleitet"],
+     correct:0,
+     e:'"welches" ist Relativpronomen.',
+     r:"welcher/welche/welches sind Relativpronomen.",
+     m:"welcher = Relativpronomen."},
+    {type:"mc", q:'"Lachend lief das Kind weg." - Welcher Satzteil?',
+     options:["Relativsatz","Partizipialsatz / Partizip","Infinitivsatz","Konjunktionalsatz"],
+     correct:1,
+     e:'"Lachend" = Partizip I.',
+     r:"Partizip I als Satzkern -> Partizipialsatz.",
+     m:"-end-Form = Partizip I."},
+    {type:"mc", q:'Woran erkennt man einen INFINITIVSATZ am sichersten?',
+     options:["am Wort 'weil'","an 'zu' + Infinitiv","an einem Relativpronomen","an Erststellung des Verbs"],
+     correct:1,
+     e:'"zu + Infinitiv" ist das Merkmal.',
+     r:"Infinitivsatz = zu + Infinitivform.",
+     m:"zu + lesen / zu + arbeiten."},
+    {type:"mc", q:'"Obwohl es regnete, gingen wir spazieren." - Welcher NS?',
+     options:["Relativsatz","Konjunktionalsatz","Infinitivsatz","Partizipialsatz"],
+     correct:1,
+     e:'"obwohl" ist unterordnende Konjunktion.',
+     r:"obwohl/weil/dass/wenn -> Konjunktionalsatz.",
+     m:"obwohl = Konjunktion."}
+  ]
+};
+
+const MOD_RK = {
+  id:"rk",
+  name:"Rechtschreibung & Komma",
+  icon:"R",
+  color:"#dc2626",
+  desc:"Gross/Klein, Komma, Korrektur",
+  exercises:[
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Im Allgemeinen lese ich viel.","Im allgemeinen lese ich viel.","Im Allgemeinem lese ich viel.","Im allgemeinem lese ich viel."],
+     correct:0,
+     e:'Nominalisiertes Adjektiv "Allgemeinen" wird grossgeschrieben.',
+     r:"Nominalisierungen schreibt man gross.",
+     m:"Artikel + Adjektiv = oft Nomen."},
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Er liest, weil es Spass macht.","Er liest weil es Spass macht.","Er liest, weil, es Spass macht.","Er liest weil, es Spass macht."],
+     correct:0,
+     e:'Vor Konjunktion "weil" steht ein Komma.',
+     r:"Komma vor unterordnender Konjunktion (weil, dass, obwohl).",
+     m:"NS abtrennen mit Komma."},
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Das Lesen macht Spass.","Das lesen macht Spass.","Das Lesen, macht Spass.","das Lesen macht Spass."],
+     correct:0,
+     e:'"Lesen" ist hier nominalisierter Infinitiv -> gross.',
+     r:"Nominalisierte Verben werden grossgeschrieben.",
+     m:"das/dem/des + Verb = Nomen."},
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Ich kaufe Aepfel, Birnen und Bananen.","Ich kaufe Aepfel Birnen und Bananen.","Ich kaufe Aepfel, Birnen, und Bananen.","Ich kaufe Aepfel; Birnen und Bananen."],
+     correct:0,
+     e:'Aufzaehlung: Komma zwischen Gliedern, vor "und" KEIN Komma.',
+     r:"Aufzaehlung mit Komma; vor 'und'/'oder' kein Komma.",
+     m:"Komma trennt, 'und' verbindet."},
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Heute Abend gehe ich aus.","heute Abend gehe ich aus.","Heute abend gehe ich aus.","heute abend gehe ich aus."],
+     correct:0,
+     e:'Tageszeiten nach Adverb werden grossgeschrieben.',
+     r:"heute/morgen/gestern + Tageszeit: Tageszeit gross.",
+     m:"Heute Abend (gross)."},
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Der Mann, der lacht, ist mein Freund.","Der Mann der lacht ist mein Freund.","Der Mann, der lacht ist mein Freund.","Der Mann der lacht, ist mein Freund."],
+     correct:0,
+     e:'Relativsatz steht zwischen zwei Kommas.',
+     r:"Eingeschobener NS: vorne UND hinten ein Komma.",
+     m:"Eingeschobener NS = zwei Kommas."},
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Sie laeuft Ski.","Sie laeuft ski.","Sie laeuft Schi.","Sie laeuft schi."],
+     correct:0,
+     e:'"Ski" ist ein Nomen -> gross.',
+     r:"Sportarten als Nomen schreibt man gross.",
+     m:"Sportart-Nomen = gross."},
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Er hat Recht.","Er hat recht.","Er hat reCht.","Er hat-Recht."],
+     correct:1,
+     e:'"recht haben" ist eine feste Verbverbindung -> klein.',
+     r:"In festen Verbverbindungen: oft klein (recht haben, ernst nehmen).",
+     m:"recht/unrecht haben = klein."},
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Ich weiss, dass du kommst.","Ich weiss dass du kommst.","Ich weiss; dass du kommst.","Ich weiss, dass, du kommst."],
+     correct:0,
+     e:'NS mit "dass" mit Komma abtrennen.',
+     r:"Komma vor 'dass'.",
+     m:"Vor dass = Komma."},
+    {type:"mc", q:'Welche Schreibung ist korrekt?',
+     options:["Beim Joggen hoere ich Musik.","beim Joggen hoere ich Musik.","Beim joggen hoere ich Musik.","Beim Joggen hoere ich musik."],
+     correct:0,
+     e:'"Joggen" ist nominalisierter Infinitiv; "Musik" ist Nomen.',
+     r:"Nominalisierter Infinitiv und Nomen werden grossgeschrieben.",
+     m:"beim + Verb = Nomen."}
+  ]
+};
+
+const MODULES = [MOD_WORTARTEN, MOD_PPA, MOD_FINIT, MOD_AP, MOD_FLEX, MOD_SG, MOD_NS, MOD_RK];
+
+/* Boss exam composition: 5/4/4/3/4/4/4/2 = 30 */
+const BOSS_PLAN = [
+  {mod:"wortarten", n:5},
+  {mod:"ppa", n:4},
+  {mod:"finit", n:4},
+  {mod:"ap", n:3},
+  {mod:"flex", n:4},
+  {mod:"sg", n:4},
+  {mod:"ns", n:4},
+  {mod:"rk", n:2}
+];
+
+/* ---------------- SCREENS ---------------- */
+
+function renderStart(){
+  clearApp();
+  applyTheme();
+  const root = document.getElementById("app");
+  root.appendChild(renderHeader(true));
+
+  const hero = el("div",{class:"card"},
+    el("h1",{},"Grundkurs 26A"),
+    el("p",{},"Spielerisches Lerntraining fuer die Deutschpruefung am 03.06.2026."),
+    el("div",{class:"divider"})
+  );
+
+  if(state.nickname){
+    hero.appendChild(el("p",{},"Angemeldet als ", el("b",{}, state.nickname), " (", state.mode==="klasse"?"Klassenmodus":"Einzelspieler", ")"));
+    const row = el("div",{class:"btn-row"});
+    row.appendChild(el("button",{class:"btn", onclick:renderHome}, "Weiterlernen"));
+    row.appendChild(el("button",{class:"btn ghost", onclick:()=>{ state.nickname=""; saveState(); renderStart(); }}, "Wechseln"));
+    hero.appendChild(row);
+    mount(hero);
+    mount(renderFooterNote());
+    return;
+  }
+
+  mount(hero);
+
+  const modes = el("div",{class:"card"},
+    el("h2",{},"Wie moechtest du spielen?"),
+    el("div",{class:"mode-grid"},
+      el("div",{class:"mode-card", onclick:()=>{state.mode="einzel"; renderNicknameStep(false);}},
+        el("div",{class:"h"},"Einzelspieler"),
+        el("div",{class:"d"},"Lerne allein. Fortschritt nur auf diesem Geraet.")
+      ),
+      el("div",{class:"mode-card", onclick:()=>{state.mode="klasse"; renderNicknameStep(true);}},
+        el("div",{class:"h"},"Klassenmodus"),
+        el("div",{class:"d"},"Mit Spitzname. Lokales Leaderboard pro Geraet.")
+      )
+    ),
+    el("div",{class:"divider"}),
+    el("p",{class:"muted"},"Dein Fortschritt wird nur auf diesem Geraet gespeichert. Keine Anmeldung, keine E-Mail, keine Cloud.")
+  );
+  mount(modes);
+
+  const share = el("div",{class:"card"},
+    el("h2",{},"Link teilen"),
+    el("p",{},"Schicke deinen Klassenkameraden den Link dieser Seite."),
+    el("button",{class:"btn", onclick:copyLink}, "Link mit Klasse teilen")
+  );
+  mount(share);
+
+  mount(renderFooterNote());
+}
+
+function renderNicknameStep(needsName){
+  clearApp();
+  const root = document.getElementById("app");
+  root.appendChild(renderHeader(true));
+
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h1",{}, needsName ? "Spitzname waehlen" : "Bereit?"));
+  card.appendChild(el("p",{}, needsName ? "Frei waehlbar - keine echten Namen noetig." : "Klicke auf Start."));
+
+  if(needsName){
+    const input = el("input",{class:"input", type:"text", maxlength:"20", placeholder:"z.B. SchneeFuchs42"});
+    input.value = state.nickname || "";
+    card.appendChild(input);
+    const row = el("div",{class:"btn-row"});
+    row.appendChild(el("button",{class:"btn", onclick:()=>{
+      const v = (input.value||"").trim();
+      if(v.length<2){ toast("Mindestens 2 Zeichen"); return; }
+      state.nickname = v.substring(0,20);
+      saveState();
+      renderHome();
+    }}, "Spielen starten"));
+    row.appendChild(el("button",{class:"btn ghost", onclick:renderStart}, "Zurueck"));
+    card.appendChild(row);
+  }else{
+    state.nickname = state.nickname || "Du";
+    saveState();
+    const row = el("div",{class:"btn-row"});
+    row.appendChild(el("button",{class:"btn", onclick:renderHome}, "Lernen starten"));
+    row.appendChild(el("button",{class:"btn ghost", onclick:renderStart}, "Zurueck"));
+    card.appendChild(row);
+  }
+
+  mount(card);
+}
+
+function renderHeader(showShare){
+  const bar = el("header",{class:"appbar"});
+  const left = el("div",{class:"logo"}, el("span",{class:"dot"}), document.createTextNode("Grundkurs 26A"));
+  const right = el("div",{class:"bar"});
+
+  right.appendChild(el("span",{class:"chip"}, "P " + state.points));
+  right.appendChild(el("button",{class:"icon-btn", title:"Theme", onclick:()=>{toggleTheme(); refreshHeader();}}, state.theme==="dark"?"L":"D"));
+  if(showShare) right.appendChild(el("button",{class:"icon-btn", title:"Link teilen", onclick:copyLink}, "T"));
+  right.appendChild(el("button",{class:"icon-btn", title:"Home", onclick:renderHome}, "H"));
+
+  bar.appendChild(left);
+  bar.appendChild(right);
+  return bar;
+}
+function refreshHeader(){
+  const oldHeader = document.querySelector("header.appbar");
+  if(!oldHeader) return;
+  oldHeader.replaceWith(renderHeader(true));
+}
+
+function renderHome(){
+  clearApp();
+  applyTheme();
+  const root = document.getElementById("app");
+  root.appendChild(renderHeader(true));
+
+  const head = el("div",{class:"card"});
+  head.appendChild(el("h1",{}, "Hallo, " + (state.nickname||"Du") + "!"));
+  head.appendChild(el("p",{}, "Waehle ein Level. Lernmodus mit Erklaerungen. Pruefungsmodus ohne Hilfe."));
+
+  const stats = el("div",{class:"flex-between", style:"margin-top:8px"});
+  const total = MODULES.reduce((a,m)=>a + m.exercises.length, 0);
+  const solved = MODULES.reduce((a,m)=>a + ((state.progress[m.id]||{}).best||0), 0);
+  stats.appendChild(el("div",{class:"muted"}, "Bestloesung gesamt: " + solved + " / " + total));
+  stats.appendChild(el("div",{class:"chip"}, "P " + state.points));
+  head.appendChild(stats);
+
+  const pf = el("div",{class:"progress-track", style:"margin-top:10px"});
+  pf.appendChild(el("div",{class:"progress-fill", style:"width:"+(total?Math.round(solved/total*100):0)+"%"}));
+  head.appendChild(pf);
+
+  mount(head);
+
+  const grid = el("div",{class:"modules-grid"});
+  MODULES.forEach((m,i)=>{
+    grid.appendChild(renderModuleCard(m, i+1));
+  });
+  mount(grid);
+
+  // Boss + extras
+  const boss = el("div",{class:"module-card boss-card", onclick:()=>startBoss()});
+  boss.appendChild(el("div",{class:"level"}, "BOSS"));
+  boss.appendChild(el("div",{class:"top"},
+    el("div",{class:"badge", style:"background:rgba(255,255,255,0.18);color:white"}, "*"),
+    el("div",{},
+      el("div",{class:"title"}, "Boss-Pruefung"),
+      el("div",{class:"desc"}, "30 gemischte Aufgaben - Note nach CH-System")
+    )
+  ));
+  const lb = state.bossHistory[state.bossHistory.length-1];
+  if(lb){
+    boss.appendChild(el("div",{class:"desc"}, "Letztes Ergebnis: " + lb.percent + "% - Note " + lb.grade));
+  }
+  mount(el("div",{style:"margin-top:14px"}, boss));
+
+  // Bottom row buttons
+  const tools = el("div",{class:"card"},
+    el("h2",{}, "Werkzeuge"),
+    el("div",{class:"btn-row"},
+      el("button",{class:"btn secondary", onclick:renderRepeat}, "Falsche wiederholen"),
+      el("button",{class:"btn secondary", onclick:renderTeacher}, "Lehreransicht")
+    ),
+    el("div",{class:"btn-row"},
+      el("button",{class:"btn secondary", onclick:renderLeaderboard}, "Leaderboard"),
+      el("button",{class:"btn ghost", onclick:resetAll}, "Alles zuruecksetzen")
+    )
+  );
+  mount(tools);
+
+  mount(renderFooterNote());
+}
+
+function renderModuleCard(m, level){
+  const prog = state.progress[m.id] || {best:0, stars:0, completed:false};
+  const stars = "*".repeat(prog.stars||0) + ".".repeat(3-(prog.stars||0));
+  const card = el("div",{class:"module-card", onclick:()=>startModule(m.id,false)});
+  card.appendChild(el("div",{class:"level"}, "Level " + level));
+  card.appendChild(el("div",{class:"top"},
+    el("div",{class:"badge", style:"background:"+m.color}, m.icon),
+    el("div",{style:"flex:1"},
+      el("div",{class:"title"}, m.name),
+      el("div",{class:"desc"}, m.desc)
+    )
+  ));
+  const bar = el("div",{class:"progress-track"});
+  bar.appendChild(el("div",{class:"progress-fill", style:"width:"+(m.exercises.length?Math.round((prog.best||0)/m.exercises.length*100):0)+"%"}));
+  card.appendChild(bar);
+  card.appendChild(el("div",{class:"flex-between"},
+    el("div",{class:"muted"}, (prog.best||0) + " / " + m.exercises.length + " richtig"),
+    el("div",{class:"stars"}, stars)
+  ));
+  card.appendChild(el("div",{class:"btn-row"},
+    el("button",{class:"btn small secondary", onclick:(e)=>{e.stopPropagation();startModule(m.id,false);}}, "Lernen"),
+    el("button",{class:"btn small ghost", onclick:(e)=>{e.stopPropagation();startModule(m.id,true);}}, "Pruefung")
+  ));
+  return card;
+}
+
+function renderFooterNote(){
+  return el("div",{class:"footer-note"},
+    "Dein Fortschritt wird nur auf diesem Geraet gespeichert. Keine Cloud. Keine Anmeldung."
+  );
+}
+
+/* ---------------- MODULE SESSION ---------------- */
+
+let session = null;
+
+function startModule(modId, examMode){
+  const m = MODULES.find(x=>x.id===modId);
+  if(!m) return;
+  const order = shuffle(m.exercises.map((_,i)=>i));
+  session = {
+    kind:"module",
+    modId,
+    examMode,
+    exercises:m.exercises,
+    order,
+    idx:0,
+    correct:0,
+    wrong:[],
+    answered:false
+  };
+  renderExercise();
+}
+
+function startRepeat(){
+  const allWrong = [];
+  MODULES.forEach(m=>{
+    const prog = state.progress[m.id];
+    if(prog && prog.wrong){
+      prog.wrong.forEach(w=>{ allWrong.push({modId:m.id, exIdx:w.idx}); });
+    }
+  });
+  if(allWrong.length===0){ toast("Keine falschen Aufgaben gespeichert."); return; }
+  // Limit to 15
+  const picked = shuffle(allWrong).slice(0,15);
+  session = {
+    kind:"repeat",
+    items:picked,
+    idx:0,
+    correct:0,
+    answered:false
+  };
+  renderExercise();
+}
+
+function startBoss(){
+  const items = [];
+  BOSS_PLAN.forEach(plan=>{
+    const m = MODULES.find(x=>x.id===plan.mod);
+    const order = shuffle(m.exercises.map((_,i)=>i)).slice(0,plan.n);
+    order.forEach(i => items.push({modId:plan.mod, exIdx:i}));
+  });
+  session = {
+    kind:"boss",
+    items: shuffle(items),
+    idx:0,
+    correct:0,
+    wrongByMod:{},
+    answered:false
+  };
+  renderExercise();
+}
+
+function currentExercise(){
+  if(session.kind==="module"){
+    const i = session.order[session.idx];
+    return {ex: session.exercises[i], modId: session.modId, exIdx:i};
+  }else{
+    const it = session.items[session.idx];
+    const m = MODULES.find(x=>x.id===it.modId);
+    return {ex: m.exercises[it.exIdx], modId: it.modId, exIdx: it.exIdx};
+  }
+}
+
+function totalCount(){
+  if(session.kind==="module") return session.order.length;
+  return session.items.length;
+}
+
+function renderRepeat(){ startRepeat(); }
+
+function renderExercise(){
+  clearApp();
+  applyTheme();
+  const root = document.getElementById("app");
+  root.appendChild(renderHeader(false));
+
+  const total = totalCount();
+  const i = session.idx;
+  const {ex, modId} = currentExercise();
+  const mod = MODULES.find(x=>x.id===modId);
+
+  // header card
+  const head = el("div",{class:"card"},
+    el("div",{class:"flex-between"},
+      el("div",{},
+        el("span",{class:"tag blue"}, session.kind==="boss"?"BOSS":session.kind==="repeat"?"REPEAT":(mod?mod.name:"")),
+        el("span",{style:"margin-left:6px"}, (i+1) + " / " + total)
+      ),
+      el("button",{class:"btn small ghost", onclick:()=>{
+        if(confirm("Wirklich abbrechen?")) renderHome();
+      }}, "Abbrechen")
+    ),
+    el("div",{class:"progress-track"},
+      el("div",{class:"progress-fill", style:"width:"+Math.round((i)/total*100)+"%"})
+    )
+  );
+  mount(head);
+
+  // exercise card
+  const card = el("div",{class:"card exercise"});
+  card.appendChild(el("div",{class:"question"}, ex.q));
+
+  // Hint button (Lernmodus only)
+  if(!session.examMode && session.kind!=="boss"){
+    const hint = el("div",{class:"hint"});
+    if(ex.tip) hint.textContent = "Tipp: " + ex.tip;
+    else hint.textContent = "Tipp: " + ex.m;
+    card.appendChild(el("button",{class:"hint-btn", onclick:()=>{ hint.classList.toggle("show"); }}, "Tipp anzeigen"));
+    card.appendChild(hint);
+  }
+
+  // Body by type
+  let answerArea = null;
+  if(ex.type === "mc" || ex.type === "trans"){
+    answerArea = renderMC(ex, card);
+  }else if(ex.type === "click"){
+    answerArea = renderClick(ex, card, false);
+  }else if(ex.type === "multiclick"){
+    answerArea = renderClick(ex, card, true);
+  }else{
+    card.appendChild(el("div",{}, "Unbekannter Typ."));
+  }
+
+  mount(card);
+}
+
+function renderMC(ex, card){
+  const wrap = el("div",{class:"options"});
+  const buttons = [];
+  ex.options.forEach((opt, idx)=>{
+    const b = el("button",{class:"option", onclick:()=>{
+      if(session.answered) return;
+      session.answered = true;
+      const correct = (idx === ex.correct);
+      buttons.forEach((bb,bi)=>{
+        bb.classList.add(bi === ex.correct ? "correct" : (bi===idx && !correct ? "wrong" : ""));
+        bb.disabled = true;
+      });
+      finishAnswer(correct, ex, card);
+    }}, opt);
+    buttons.push(b);
+    wrap.appendChild(b);
+  });
+  card.appendChild(wrap);
+  return wrap;
+}
+
+function renderClick(ex, card, multi){
+  const tokens = tokenize(ex.s);
+  // Map clickable index from word position considering punctuation tokens are also in array
+  // ex.correct is the clickable index (skipping punct)
+  const clickableIndexMap = []; // clickableIndexMap[i] = token index in tokens
+  tokens.forEach((t,ti)=>{
+    if(t.clickable) clickableIndexMap.push(ti);
+  });
+  const zone = el("div",{class:"word-zone"});
+  const wordEls = [];
+  tokens.forEach((t, ti)=>{
+    if(!t.clickable){
+      const sp = el("span",{class:"word punct"}, t.text);
+      zone.appendChild(sp);
+      wordEls.push(null);
+      return;
+    }
+    const w = el("span",{class:"word"}, t.text);
+    wordEls.push(w);
+    const clickableIdx = clickableIndexMap.indexOf(ti);
+    w.dataset.idx = clickableIdx;
+    w.addEventListener("click", ()=>{
+      if(session.answered) return;
+      if(multi){
+        w.classList.toggle("selected");
+      }else{
+        // single click -> immediate evaluate
+        session.answered = true;
+        const correct = (clickableIdx === ex.correct);
+        wordEls.forEach((we, wi)=>{
+          if(!we) return;
+          const cidx = clickableIndexMap.indexOf(wi);
+          we.classList.add("locked");
+          if(cidx === ex.correct) we.classList.add("correct");
+          else if(cidx === clickableIdx) we.classList.add("wrong");
+        });
+        finishAnswer(correct, ex, card);
+      }
+    });
+    zone.appendChild(w);
+  });
+  card.appendChild(zone);
+
+  if(multi){
+    const submit = el("button",{class:"btn", onclick:()=>{
+      if(session.answered) return;
+      session.answered = true;
+      const selected = wordEls.map((we, wi)=>{
+        if(!we) return null;
+        return we.classList.contains("selected") ? clickableIndexMap.indexOf(wi) : null;
+      }).filter(x=>x!==null);
+      const target = ex.correct.slice().sort((a,b)=>a-b);
+      const got = selected.slice().sort((a,b)=>a-b);
+      const correct = target.length===got.length && target.every((v,i)=>v===got[i]);
+      // visualize
+      wordEls.forEach((we, wi)=>{
+        if(!we) return;
+        const cidx = clickableIndexMap.indexOf(wi);
+        we.classList.add("locked");
+        if(target.indexOf(cidx)>=0) we.classList.add("correct");
+        else if(we.classList.contains("selected")) we.classList.add("wrong");
+        we.classList.remove("selected");
+      });
+      finishAnswer(correct, ex, card);
+    }}, "Antwort pruefen");
+    card.appendChild(submit);
+  }
+  return zone;
+}
+
+function finishAnswer(correct, ex, card){
+  // Feedback
+  const fb = el("div",{class:"feedback " + (correct?"correct":"wrong")});
+  fb.appendChild(el("div",{class:"head"}, correct ? "Richtig!" : "Leider falsch"));
+  // In Pruefungsmodus -> reduzierte Erklaerung? Vorgabe sagt nur "ohne Hilfe" davor.
+  // Wir zeigen Erklaerung trotzdem nach der Antwort.
+  fb.appendChild(el("div",{class:"row", html:"<b>Warum:</b> " + ex.e}));
+  fb.appendChild(el("div",{class:"row", html:"<b>Regel:</b> " + ex.r}));
+  fb.appendChild(el("div",{class:"merksatz"}, "Merksatz: " + ex.m));
+  card.appendChild(fb);
+
+  // Track
+  if(correct){
+    session.correct++;
+    state.points += 10;
+    pointsAnim("+10");
+  }else{
+    const cur = currentExercise();
+    if(session.kind==="module"){
+      session.wrong.push({idx: cur.exIdx, q: ex.q});
+    }
+    if(session.kind==="boss"){
+      session.wrongByMod[cur.modId] = (session.wrongByMod[cur.modId]||0)+1;
+    }
+  }
+  saveState();
+
+  const next = el("button",{class:"btn", style:"margin-top:14px", onclick:()=>{
+    session.idx++;
+    session.answered=false;
+    if(session.idx >= totalCount()){
+      finishSession();
+    }else{
+      renderExercise();
+    }
+  }}, session.idx+1 >= totalCount() ? "Ergebnis ansehen" : "Naechste Aufgabe");
+  card.appendChild(next);
+}
+
+function finishSession(){
+  if(session.kind==="module") finishModule();
+  else if(session.kind==="boss") finishBoss();
+  else finishRepeat();
+}
+
+function finishModule(){
+  const total = session.order.length;
+  const correct = session.correct;
+  const stars = correct === total ? 3 : correct >= Math.ceil(total*0.8) ? 2 : correct >= Math.ceil(total*0.5) ? 1 : 0;
+  const prev = state.progress[session.modId] || {best:0, stars:0, attempts:0, wrong:[]};
+  state.progress[session.modId] = {
+    best: Math.max(prev.best||0, correct),
+    stars: Math.max(prev.stars||0, stars),
+    attempts: (prev.attempts||0)+1,
+    completed: correct === total ? true : prev.completed,
+    wrong: session.wrong.slice(0,30)
+  };
+  saveState();
+
+  clearApp();
+  document.getElementById("app").appendChild(renderHeader(false));
+  const mod = MODULES.find(x=>x.id===session.modId);
+
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h1",{class:"center"}, "Level abgeschlossen"));
+  card.appendChild(el("p",{class:"center"}, mod.name));
+  card.appendChild(el("div",{class:"result-hero"},
+    el("div",{class:"big"}, correct + " / " + total),
+    el("div",{class:"stars-large"}, "*".repeat(stars) + ".".repeat(3-stars))
+  ));
+  const pct = Math.round(correct/total*100);
+  card.appendChild(el("p",{class:"center muted"}, pct + "% richtig"));
+
+  if(session.wrong.length){
+    card.appendChild(el("div",{class:"divider"}));
+    card.appendChild(el("h3",{}, "Fehler-Wiederholung"));
+    const ul = el("ul",{class:"list"});
+    session.wrong.forEach(w=> ul.appendChild(el("li",{}, w.q)));
+    card.appendChild(ul);
+  }
+
+  card.appendChild(el("div",{class:"btn-row"},
+    el("button",{class:"btn", onclick:()=>startModule(session.modId, session.examMode)}, "Nochmal"),
+    el("button",{class:"btn secondary", onclick:renderHome}, "Zur Uebersicht")
+  ));
+  if(session.wrong.length){
+    card.appendChild(el("div",{class:"btn-row"},
+      el("button",{class:"btn ghost", onclick:startRepeat}, "Falsche wiederholen")
+    ));
+  }
+  mount(card);
+}
+
+function finishBoss(){
+  const total = session.items.length;
+  const correct = session.correct;
+  const percent = Math.round(correct/total*100);
+  const grade = gradeCH(percent);
+  // weak by module
+  const weak = {};
+  BOSS_PLAN.forEach(p=>{
+    const wrong = session.wrongByMod[p.mod] || 0;
+    weak[p.mod] = { wrong, total: p.n, rate: Math.round((p.n - wrong)/p.n*100) };
+  });
+  const entry = {
+    name: state.nickname || "Anonym",
+    score: correct, total, percent, grade,
+    date: new Date().toLocaleString("de-CH"),
+    weak
+  };
+  state.bossHistory.push({score:correct, total, percent, grade, date:entry.date, weak});
+  state.leaderboard.push(entry);
+  state.leaderboard.sort((a,b)=>b.percent - a.percent);
+  state.leaderboard = state.leaderboard.slice(0,20);
+  saveState();
+  /*
+    BACKEND-ANSCHLUSS (Beispiel):
+    fetch('https://DEIN-PROJEKT.supabase.co/rest/v1/scores',{
+      method:'POST',
+      headers:{'apikey':'ANON_KEY','Authorization':'Bearer ANON_KEY','Content-Type':'application/json'},
+      body: JSON.stringify({name:entry.name, score:entry.score, percent:entry.percent})
+    });
+  */
+
+  clearApp();
+  document.getElementById("app").appendChild(renderHeader(false));
+
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h1",{class:"center"}, "BOSS-PRUEFUNG"));
+  card.appendChild(el("div",{class:"result-hero"},
+    el("div",{class:"big"}, percent + "%"),
+    el("div",{class:"grade", style:"color:var(--blue)"}, "Note " + grade)
+  ));
+  card.appendChild(el("p",{class:"center muted"}, correct + " von " + total + " Aufgaben richtig"));
+
+  card.appendChild(el("div",{class:"divider"}));
+  card.appendChild(el("h3",{}, "Schwaechenanalyse"));
+  const wl = el("div",{class:"weak-list"});
+  BOSS_PLAN.forEach(p=>{
+    const w = weak[p.mod];
+    const mod = MODULES.find(x=>x.id===p.mod);
+    const row = el("div",{class:"item"});
+    row.appendChild(el("div",{}, mod.name));
+    const bar = el("div",{class: "bar " + (w.rate>=70?"good":"")});
+    bar.appendChild(el("div",{style:"width:"+w.rate+"%"}));
+    row.appendChild(bar);
+    row.appendChild(el("div",{class:"muted"}, w.rate + "%"));
+    wl.appendChild(row);
+  });
+  card.appendChild(wl);
+
+  // Recommendation
+  const weakest = BOSS_PLAN.map(p=>({mod:p.mod, rate:weak[p.mod].rate})).sort((a,b)=>a.rate-b.rate)[0];
+  const weakestMod = MODULES.find(x=>x.id===weakest.mod);
+  card.appendChild(el("div",{class:"divider"}));
+  card.appendChild(el("h3",{}, "Empfehlung"));
+  card.appendChild(el("p",{}, "Uebe als Naechstes: ", el("b",{}, weakestMod.name)));
+
+  card.appendChild(el("div",{class:"btn-row"},
+    el("button",{class:"btn", onclick:()=>startModule(weakest.mod,false)}, "Schwaeche jetzt ueben"),
+    el("button",{class:"btn secondary", onclick:renderHome}, "Uebersicht")
+  ));
+  card.appendChild(el("div",{class:"btn-row"},
+    el("button",{class:"btn ghost", onclick:renderLeaderboard}, "Leaderboard"),
+    el("button",{class:"btn ghost", onclick:startBoss}, "Boss nochmal")
+  ));
+  mount(card);
+}
+
+function finishRepeat(){
+  const total = session.items.length;
+  const correct = session.correct;
+  clearApp();
+  document.getElementById("app").appendChild(renderHeader(false));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h1",{class:"center"}, "Wiederholung fertig"));
+  card.appendChild(el("div",{class:"result-hero"}, el("div",{class:"big"}, correct + " / " + total)));
+  card.appendChild(el("div",{class:"btn-row"},
+    el("button",{class:"btn", onclick:renderHome}, "Zur Uebersicht"),
+    el("button",{class:"btn secondary", onclick:startRepeat}, "Nochmal")
+  ));
+  mount(card);
+}
+
+/* ---------------- LEADERBOARD ---------------- */
+
+function renderLeaderboard(){
+  clearApp();
+  document.getElementById("app").appendChild(renderHeader(true));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h1",{}, "Leaderboard"));
+  card.appendChild(el("p",{class:"muted"}, "Nur lokal auf diesem Geraet."));
+  if(state.leaderboard.length === 0){
+    card.appendChild(el("p",{}, "Noch keine Eintraege. Spiele die Boss-Pruefung!"));
+  }else{
+    const ul = el("ul",{class:"list"});
+    state.leaderboard.forEach((e,i)=>{
+      ul.appendChild(el("li",{},
+        el("div",{}, (i+1) + ". ", el("b",{}, e.name)),
+        el("div",{class:"muted"}, e.percent + "% (Note " + e.grade + ") - " + e.date)
+      ));
+    });
+    card.appendChild(ul);
+  }
+  card.appendChild(el("div",{class:"btn-row"},
+    el("button",{class:"btn", onclick:startBoss}, "Boss starten"),
+    el("button",{class:"btn ghost", onclick:()=>{
+      if(confirm("Leaderboard auf diesem Geraet leeren?")){ state.leaderboard=[]; saveState(); renderLeaderboard(); }
+    }}, "Leeren"),
+    el("button",{class:"btn secondary", onclick:renderHome}, "Zurueck")
+  ));
+  mount(card);
+}
+
+/* ---------------- TEACHER ---------------- */
+
+function renderTeacher(){
+  clearApp();
+  document.getElementById("app").appendChild(renderHeader(true));
+  const card = el("div",{class:"card"});
+  card.appendChild(el("h1",{}, "Lehreransicht"));
+  card.appendChild(el("p",{class:"muted"}, "Uebersicht aller Lernziele und Aufgaben."));
+  const ul = el("ul",{class:"list"});
+  MODULES.forEach(m=>{
+    const prog = state.progress[m.id] || {best:0,stars:0,attempts:0};
+    ul.appendChild(el("li",{},
+      el("div",{},
+        el("b",{}, m.name),
+        el("div",{class:"muted"}, m.desc)
+      ),
+      el("div",{class:"muted"}, m.exercises.length + " Aufgaben - Best: " + (prog.best||0) + " - " + (prog.stars||0) + "*")
+    ));
+  });
+  card.appendChild(ul);
+  card.appendChild(el("div",{class:"divider"}));
+  card.appendChild(el("h3",{}, "Pruefung"));
+  card.appendChild(el("p",{}, "Boss-Pruefung: 30 gemischte Aufgaben (5/4/4/3/4/4/4/2). Notenformel: 1 + 5 * Punkte / Max."));
+  card.appendChild(el("div",{class:"btn-row"},
+    el("button",{class:"btn", onclick:startBoss}, "Boss-Pruefung starten"),
+    el("button",{class:"btn secondary", onclick:renderHome}, "Zurueck")
+  ));
+  mount(card);
+}
+
+/* ---------------- SHARE ---------------- */
+
+function copyLink(){
+  const url = location.href.split("#")[0];
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(url).then(()=>{
+      toast("Link kopiert! Sende ihn deiner Klasse.");
+    }).catch(()=>fallbackCopy(url));
+  }else{
+    fallbackCopy(url);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position="fixed";
+  ta.style.opacity="0";
+  document.body.appendChild(ta);
+  ta.select();
+  try{ document.execCommand("copy"); toast("Link kopiert!"); }catch(e){ toast("Bitte URL manuell kopieren."); }
+  document.body.removeChild(ta);
+}
+
+/* ---------------- INIT ---------------- */
+applyTheme();
+renderStart();
+</script>
+</body>
+</html>
